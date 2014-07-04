@@ -1,0 +1,22 @@
+{
+  "name": "sms2speech",
+  "description": "sms to twillio, and the pi speaks!",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/resin-io/twilio-sms2speech.git"
+  },
+  "scripts": {
+    "preinstall": "bash deps.sh"
+  },
+  "version": "0.0.3",
+  "dependencies": {
+    "express": "^4.4.5",
+    "lame": "~1.0.2",
+    "request": "~2.22.0",
+    "speaker": "~0.0.10",
+    "twilio-api": "^0.3.3"
+  },
+  "engines": {
+    "node": "0.10.22"
+  }
+}
