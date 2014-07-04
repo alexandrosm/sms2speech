@@ -11,7 +11,7 @@ var out = fs.openSync('./out.log', 'a');
 var err = fs.openSync('./out_err.log', 'a');
 var child = spawn('/usr/bin/sound_start', [], { detached: true, stdio: [ 'ignore', out, err ] });
 
-var app = express.createServer();
+var app = express();
 var cli = new twilioAPI.Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(cli.middleware() );
