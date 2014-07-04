@@ -6,3 +6,6 @@
 
 # Folders
 node_modules
+
+#intelliJ
+.idea
