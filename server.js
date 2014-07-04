@@ -24,6 +24,7 @@ cli.account.getApplication(process.env.TWILIO_APPLICATION_SID, function(err, app
     if(err) throw err;
     app.register();
     app.on('incomingSMS', function(smsMessage) {
+        console.log(smsMessage.Body)
         var url = 'http://translate.google.com/translate_tts?tl=en&q=' + encodeURIComponent(smsMessage.Body);
         request(url).pipe(new Lame.Decoder).pipe(new Speaker);
     });
