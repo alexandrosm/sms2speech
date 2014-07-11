@@ -14,6 +14,17 @@ var child = spawn('/usr/bin/sound_start', [], { detached: true, stdio: [ 'ignore
 var app = express();
 var cli = new twilioAPI.Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
+var ngrok = require('ngrok');
+
+ngrok.connect({
+    authtoken: process.env.NGROK_AUTH_TOKEN,
+    subdomain: 'resintwilio',
+    port: process.env.PORT
+}, function (err, url) {
+    // https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required
+    console.log(err, url)
+});
+
 app.use(cli.middleware() );
 app.listen(process.env.PORT);
 

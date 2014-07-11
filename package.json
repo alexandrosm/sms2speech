@@ -12,6 +12,7 @@
   "dependencies": {
     "express": "^4.4.5",
     "lame": "~1.0.2",
+    "ngrok": "^0.1.97",
     "request": "~2.22.0",
     "speaker": "~0.0.10",
     "twilio-api": "^0.3.3"
