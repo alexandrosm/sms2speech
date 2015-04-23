@@ -3,23 +3,12 @@ var Lame = require('lame');
 var Speaker = require('speaker');
 var fs = require('fs');
 var express = require('express')
-var twilioAPI = require('twilio-api')
+var twilio = require('twilio')
 
 var out = fs.openSync('./out.log', 'a');
 var err = fs.openSync('./out_err.log', 'a');
 
 var app = express();
-var cli = new twilioAPI.Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
 
 app.use(cli.middleware() );
 app.listen(process.env.PORT);
-
-//Get a Twilio application and register it
-cli.account.getApplication(process.env.TWILIO_APPLICATION_SID, function(err, app) {
-    if(err) throw err;
-    app.register();
-    app.on('incomingSMSMessage', function(smsMessage) {
-        var url = 'http://translate.google.com/translate_tts?tl=en&q=' + encodeURIComponent(smsMessage.Body);
-        request(url).pipe(new Lame.Decoder).pipe(new Speaker);
-    });
-});
