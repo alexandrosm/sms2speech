@@ -5,23 +5,11 @@ var fs = require('fs');
 var express = require('express')
 var twilioAPI = require('twilio-api')
 
-// set the volume of the sound out to a reasonable level
 var out = fs.openSync('./out.log', 'a');
 var err = fs.openSync('./out_err.log', 'a');
 
 var app = express();
 var cli = new twilioAPI.Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
-
-var ngrok = require('ngrok');
-
-ngrok.connect({
-    authtoken: process.env.NGROK_AUTH_TOKEN,
-    subdomain: 'resintwilio',
-    port: process.env.PORT
-}, function (err, url) {
-    // https://susanna.ngrok.com -> 127.0.0.1:8080 with http auth required
-    console.log(err, url)
-});
 
 app.use(cli.middleware() );
 app.listen(process.env.PORT);
