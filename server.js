@@ -2,14 +2,12 @@ var request = require('request');
 var Lame = require('lame');
 var Speaker = require('speaker');
 var fs = require('fs');
-var spawn = require('child_process').spawn;
 var express = require('express')
 var twilioAPI = require('twilio-api')
 
 // set the volume of the sound out to a reasonable level
 var out = fs.openSync('./out.log', 'a');
 var err = fs.openSync('./out_err.log', 'a');
-var child = spawn('/usr/bin/sound_start', [], { detached: true, stdio: [ 'ignore', out, err ] });
 
 var app = express();
 var cli = new twilioAPI.Client(process.env.TWILIO_ACCOUNT_SID, process.env.TWILIO_AUTH_TOKEN);
